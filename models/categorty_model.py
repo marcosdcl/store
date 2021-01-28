@@ -15,3 +15,15 @@ class Category(Base):
     def __init__(self, name: str, description: str) -> None:
         self.name = name
         self.description = description
+
+    @validates('name')
+    def validate_name(self, key, name):
+        if not isinstance(name, str):
+            raise TypeError('The name attribute must be a string.')
+        if not name.strip():
+            raise ValueError('The name attribute cannot be empty.')
+        if len(name) > 100:
+            raise ValueError(
+                'The name attribute must be a maximum of 100 characters.'
+                )
+        return name
