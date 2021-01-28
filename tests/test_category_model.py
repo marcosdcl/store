@@ -33,3 +33,10 @@ def test_category_model_name_exception_if_string_is_bigger_than_100_characters()
         raise NotImplementedError('The expected exception was not raised.')
     except Exception as error:
         assert isinstance(error, ValueError)
+
+def test_category_model_description_exception_if_string_is_bigger_than_255_characters():
+    try:
+        category = Category('name', 'i'*256)
+        raise NotImplementedError('The expected exception was not raised.')
+    except Exception as error:
+        assert isinstance(error, ValueError)
