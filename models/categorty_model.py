@@ -10,7 +10,7 @@ class Category(Base):
 
     id_ = Column('id', Integer, primary_key = True, nullable = False)
     name = Column('name', String(length=100), nullable = False)
-    description = Column('description')
+    description = Column('description', String(length=255), nullable = True)
 
     def __init__(self, name: str, description: str) -> None:
         self.name = name
