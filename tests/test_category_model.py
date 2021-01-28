@@ -29,7 +29,7 @@ def test_category_model_name_exception_if_string_is_empty():
 
 def test_category_model_name_exception_if_string_is_bigger_than_100_characters():
     try:
-        category = Category('i'*100, 'description')
+        category = Category('i'*101, 'description')
         raise NotImplementedError('The expected exception was not raised.')
     except Exception as error:
         assert isinstance(error, ValueError)
