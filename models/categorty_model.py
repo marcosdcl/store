@@ -1,6 +1,6 @@
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String
-
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import validates
 
 Base = declarative_base()
 
@@ -22,7 +22,7 @@ class Category(Base):
             raise TypeError('The name attribute must be a string.')
         if not name.strip():
             raise ValueError('The name attribute cannot be empty.')
-        if len(name) > 100:
+        if len(name) >= 100:
             raise ValueError(
                 'The name attribute must be a maximum of 100 characters.'
                 )
