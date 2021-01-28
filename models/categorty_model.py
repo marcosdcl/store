@@ -17,7 +17,7 @@ class Category(Base):
         self.description = description
 
     @validates('name')
-    def validate_name(self, key, name):
+    def validate_name(self, key, name: str) -> str:
         if not isinstance(name, str):
             raise TypeError('The name attribute must be a string.')
         if not name.strip():
@@ -29,7 +29,7 @@ class Category(Base):
         return name
 
     @validates('description')
-    def validate_description(self, key, description):
+    def validate_description(self, key, description: str) -> str:
         if len(description) > 100:
             raise ValueError(
                 'The name attribute must be a maximum of 100 characters.'
