@@ -27,3 +27,11 @@ class Category(Base):
                 'The name attribute must be a maximum of 100 characters.'
                 )
         return name
+
+    @validates('description')
+    def validate_description(self, key, description):
+        if len(description) > 100:
+            raise ValueError(
+                'The name attribute must be a maximum of 100 characters.'
+                )
+        return description
