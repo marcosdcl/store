@@ -19,3 +19,10 @@ def test_category_model_name_exception_if_type_not_string():
         raise NotImplementedError('The expected exception was not raised.')
     except Exception as error:
         assert isinstance(error, TypeError)
+
+def test_category_model_name_exception_if_string_is_empty():
+    try:
+        category = Category('   ', 'description')
+        raise NotImplementedError('The expected exception was not raised.')
+    except Exception as error:
+        assert isinstance(error, ValueError)
