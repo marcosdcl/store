@@ -1,7 +1,7 @@
 import sys
 sys.path.append('')
 
-from models.categorty_model import Category
+from models.category_model import Category
 import pytest
 
 
