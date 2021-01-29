@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import validates
+from utils.validators import validate_type, validate_not_empty, validate_len
 
 Base = declarative_base()
 
@@ -18,20 +19,13 @@ class Category(Base):
 
     @validates('name')
     def validate_name(self, key, name: str) -> str:
-        if not isinstance(name, str):
-            raise TypeError('The name attribute must be a string.')
-        if not name.strip():
-            raise ValueError('The name attribute cannot be empty.')
-        if len(name) > 100:
-            raise ValueError(
-                'The name attribute must be a maximum of 100 characters.'
-                )
+        name = validate_type(name, str, key)
+        name = validate_not_empty(name, key)
+        name = validate_len(name, 100, key)
         return name
 
     @validates('description')
     def validate_description(self, key, description: str) -> str:
-        if len(description) > 100:
-            raise ValueError(
-                'The name attribute must be a maximum of 100 characters.'
-                )
+        description = validate_type(description, str, key)
+        description = validate_len(description, 255, key)
         return description
